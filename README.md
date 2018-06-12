@@ -26,7 +26,7 @@ In terminal type:
 
 `$ make run`
 
-# Author
+# Authors
 
 [JoMedeiros](https://github.com/JoMedeiros/)
-
+[Lucas Dantas](https://github.com/vertumno)

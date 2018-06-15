@@ -20,9 +20,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="12.0" mnemonicParsing="false">
+            <Button layoutX="10.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#stop">
                <graphic>
-                  <ImageView>
+                  <ImageView onMouseClicked="#stop">
                      <image>
                         <Image url="@../imgs/icons8-parar-50.png" />
                      </image>
@@ -37,10 +37,10 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ProgressBar prefWidth="200.0" progress="0.4" />
-            <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false">
+            <Slider value="20.0" />
+            <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#playSong">
                <graphic>
-                  <ImageView>
+                  <ImageView onMouseClicked="#playSong">
                      <image>
                         <Image url="@../imgs/icons8-avanço-rápido-50.png" />
                      </image>

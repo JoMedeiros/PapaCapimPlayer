@@ -18,10 +18,16 @@ public class MediaPlayerController {
 
     // Player atributes
     private boolean isPlaying = false;
-    //private String trackPath = "samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3";
-    //private Media song = new Media(new File(trackPath).toURI().toString());
-    //private MediaPlayer player = new MediaPlayer(song);
-    //MediaView mediaView = new MediaView(player);
+    private String trackPath = "samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3";
+    private Media song;
+    private MediaPlayer player;
+    private MediaView mediaView;
+
+    public MediaPlayerController(){
+        this.song = new Media(new File(trackPath).toURI().toString());
+        this.player = new MediaPlayer(song);
+        this.mediaView = new MediaView(player);
+    }
 
     /**
      * Plays the loaded music in the player or pauses if it is playing.
@@ -31,11 +37,11 @@ public class MediaPlayerController {
         String URI;
         if (isPlaying) {
             URI = new File("src/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
-//            player.play();
+            player.pause();
             isPlaying = false;
         } else {
             URI = new File("src/br/imd/imgs/icons8-pausa-50.png").toURI().toString();
-  //          player.pause();
+            player.play();
             isPlaying = true;
         }
         // Opening the image
@@ -46,4 +52,23 @@ public class MediaPlayerController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Stops the player reseting the song.
+     */
+    public void stop(){
+        player.stop();
+    }
+
+
+    public void playSong() {
+        //String songPath = playlist.getNextPath()
+        String songPath = "samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3";
+        Media song = new Media(new File(songPath).toURI().toString());
+        player = new MediaPlayer(song);
+        player.play();
+
+        //player.setOnPaused(song);
+    }
+
 }

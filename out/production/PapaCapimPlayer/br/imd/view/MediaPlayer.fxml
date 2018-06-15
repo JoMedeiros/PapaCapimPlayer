@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="80.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.imd.view.MediaPlayerController">
+   <children>
+      <ToolBar layoutX="1.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <Button fx:id="playPauseBtn" mnemonicParsing="false" onMouseClicked="#play">
+               <graphic>
+                  <ImageView onMouseClicked="#play" onMousePressed="#play">
+                     <image>
+                        <Image url="@../imgs/icons8-reproduzir-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="10.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#stop">
+               <graphic>
+                  <ImageView onMouseClicked="#stop">
+                     <image>
+                        <Image url="@../imgs/icons8-parar-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../imgs/icons8-retroceder-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Slider value="20.0" />
+            <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#playSong">
+               <graphic>
+                  <ImageView onMouseClicked="#playSong">
+                     <image>
+                        <Image url="@../imgs/icons8-avanço-rápido-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        </items>
+      </ToolBar>
+   </children>
+</AnchorPane>

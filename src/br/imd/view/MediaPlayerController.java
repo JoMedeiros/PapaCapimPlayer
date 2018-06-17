@@ -1,6 +1,7 @@
 package br.imd.view;
 
 import br.imd.model.Music;
+import br.imd.model.Playlist;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -19,17 +20,17 @@ public class MediaPlayerController {
 
     // Player atributes
     private boolean isPlaying = false;
+    private Playlist playlist = new Playlist();
     private Music currentMusic;
     private MediaPlayer player;
     private MediaView mediaView;
 
     public MediaPlayerController() {
-        currentMusic = new Music("file:/home/petcc07/Documentos/Josivan/" +
-                "PapaCapimPlayer/samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
+        currentMusic = playlist.getNext();
         try{
             player = new MediaPlayer(currentMusic.getMedia());
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("Player could not be created\n" + e.getMessage());
         }
     }
 

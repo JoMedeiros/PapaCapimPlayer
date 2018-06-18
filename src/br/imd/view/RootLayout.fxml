@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.imd.view.RootLayoutController">
+<BorderPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.imd.view.RootLayoutController">
    <top>
-      <MenuBar minWidth="600.0" BorderPane.alignment="CENTER">
+      <MenuBar maxHeight="30.0" minHeight="30.0" minWidth="600.0" prefHeight="30.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -32,10 +35,10 @@
       <AnchorPane prefHeight="271.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <AnchorPane prefHeight="271.0" prefWidth="319.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="270.0" prefWidth="319.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <AnchorPane fx:id="userPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="userPane" prefHeight="200.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
       <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

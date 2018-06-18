@@ -63,6 +63,9 @@ public class MediaPlayerController {
      */
     public void stop(){
         player.stop();
+        String URI = new File("src/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
+        player.pause();
+        isPlaying = false;
     }
 
 

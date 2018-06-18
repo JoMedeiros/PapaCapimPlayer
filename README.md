@@ -9,10 +9,12 @@ All the songs in the sample directory are public domain songs and you can downlo
 # TODO list
 
 - [ ] Add volume buttons
-- [ ] Change foward and backward buttons to the right function
+- [ ] Next and Previous buttons do not work
 - [ ] Display time line
-- [ ] Create class for users
+- [x] Create class for users
 - [ ] List songs, create and edit playlists
+- [x] Create Login Page
+- [ ] Manage login function (create hash, compare users passwords, etc);
 
 # How to compile
 
@@ -28,5 +30,10 @@ In terminal type:
 
 # Authors
 
-[JoMedeiros](https://github.com/JoMedeiros/)
-[Lucas Dantas](https://github.com/vertumno)
+|             ![Josiva Medeiros][author1]           |         ![Lucas Dantas][author2]()         |
+|---------------------------------------------------|--------------------------------------------|
+|[Josivan Medeiros](https://github.com/JoMedeiros/) | [Lucas Dantas](https://github.com/vertumno)|
+|---------------------------------------------------|--------------------------------------------|
+
+[author1]: https://avatars3.githubusercontent.com/u/23501167?s=400&v=4
+[author2]: https://avatars3.githubusercontent.com/u/17501172?s=400&v=4

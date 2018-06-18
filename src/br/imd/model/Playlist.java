@@ -10,10 +10,11 @@ import java.util.Map;
 
 public class Playlist {
     private final StringProperty title;
-    private final IntegerProperty user;
+    private final IntegerProperty user; //< The user id
+    private int currentIndex; //< index of the current song
 
     private boolean shuffleOn = false;
-    private Map<String, String> playlist;
+    //private Map<String, String> playlist;
     private ArrayList<Music> songs;
 
     /**
@@ -29,6 +30,11 @@ public class Playlist {
     public Playlist(String title, User user){
         this.title = new SimpleStringProperty(title);
         this.user = new SimpleIntegerProperty(user.getId());
+        // Initializing the playlist with one song
+        this.songs = new ArrayList();
+        this.songs.add(new Music("file:/home/jimmy/Documentos/github_workspace/" +
+                "PapaCapimPlayer/samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3"));
+        this.currentIndex = 0;
     }
 
     /**
@@ -36,11 +42,15 @@ public class Playlist {
      * @return
      */
     public Music getNext(){
-        Music m = new Music("file:/home/jimmy/Documentos/github_workspace/" +
-                "PapaCapimPlayer/samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
-        return m;
+        //Music m = new Music("file:/home/jimmy/Documentos/github_workspace/" +
+        //        "PapaCapimPlayer/samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
+        return songs.get(currentIndex);
     }
 
+    /**
+     * Returns the StringProperty that holds the Title.
+     * @return
+     */
     public StringProperty titleProperty(){
         return title;
     }

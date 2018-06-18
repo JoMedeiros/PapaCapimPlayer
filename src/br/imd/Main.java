@@ -52,9 +52,10 @@ public class Main extends Application{
         this.primaryStage.setTitle("PapaCapimPlayer");
 
         initRootLayout();
-        // @TODO place a if statement to verify login
+        // @TODO place a if statement to verify user login
         showUser();
         showPlayer();
+        showLibrary();
     }
 
     /**
@@ -110,6 +111,24 @@ public class Main extends Application{
 
             rootLayout.setBottom(playerOverview);
         } catch (IOException e){
+            System.out.println("Exception loading Media Player fxml file");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Initializes the library overview.
+     */
+    public void showLibrary(){
+        try {
+            //
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/LibraryView.fxml"));
+            AnchorPane libraryView = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(libraryView);
+        } catch (IOException e){
+            System.out.println("Exception loading Library fxml file");
             e.printStackTrace();
         }
     }

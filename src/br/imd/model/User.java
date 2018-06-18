@@ -7,6 +7,7 @@ public class User {
     private final IntegerProperty id;
 
 
+
     public User(int id){
         this.id = new SimpleIntegerProperty(id);
     }

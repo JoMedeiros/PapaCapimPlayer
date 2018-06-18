@@ -30,10 +30,9 @@ In terminal type:
 
 # Authors
 
-|             ![Josiva Medeiros][author1]           |         ![Lucas Dantas][author2]()         |
+|             ![Josiva Medeiros][author1]           |         ![Lucas Dantas][author2]           |
 |---------------------------------------------------|--------------------------------------------|
 |[Josivan Medeiros](https://github.com/JoMedeiros/) | [Lucas Dantas](https://github.com/vertumno)|
-|---------------------------------------------------|--------------------------------------------|
 
-[author1]: https://avatars3.githubusercontent.com/u/23501167?s=400&v=4
-[author2]: https://avatars3.githubusercontent.com/u/17501172?s=400&v=4
+[author1]: https://avatars3.githubusercontent.com/u/23501167?s=180&v=4
+[author2]: https://avatars3.githubusercontent.com/u/17501172?s=180&v=4

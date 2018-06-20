@@ -24,7 +24,7 @@ public class Playlist {
     /**
      * Default Constructor
      */
-    public Playlist(){this("Untitled", new User(-1));}
+    public Playlist(){this("Untitled", new User());}
 
     /**
      * Constructor

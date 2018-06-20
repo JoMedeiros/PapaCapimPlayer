@@ -1,7 +1,9 @@
 package br.imd.view;
 
 import br.imd.Main;
+import br.imd.model.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -14,16 +16,26 @@ public class LoginPageController {
     @FXML
     PasswordField passwordField;
 
+    /**
+     * Logged in User
+     */
+    private User currentUser;
+
     Main main;
 
     /**
      * Login function.
      */
     public void handleLogin(){
-        System.out.println("Logged! Yeey");
         System.out.println("Username: " + userField.getText());
         System.out.println("Senha: " + passwordField.getText());
-        
+
+        User user = match(userField.getText());
+        if (user == null) {
+            System.out.println("Username dont match");
+            return;
+        }
+
         // Generating Hash
         StringBuffer hexString = new StringBuffer();
         try {
@@ -45,8 +57,29 @@ public class LoginPageController {
             this.main.initRootLayout();
             this.main.showPlayer();
             this.main.showUser();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Password Don't Match");
+            alert.setHeaderText("Username or password incorrect");
+            alert.setContentText("You entered a invalid username or password don't match.\n");
+
+            alert.showAndWait();
         }
     }
+
+    public User match(String userName){
+        for (User u : main.getUserData()){
+            if (u.getId() == 0) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Sets reference to Main class
+     * @param main
+     */
 
     public void setMain(Main main){
         this.main = main;

@@ -41,30 +41,33 @@ public class Main extends Application{
      */
     private ObservableList<User> userData = FXCollections.observableArrayList();
 
-    /**
-     * Logged in User
-     */
-    private User currentUser;
 
     /**
      * Constructor
      */
     public Main(){
-        //loadUserDataFromFile(new File("usersConfig.xml"));
         // @TODO change the user
-        this.currentUser = new User(42);
-        playlistData.add(new Playlist("Classic",this.currentUser));
+        User currentUser = new User(42, "");
+        playlistData.add(new Playlist("Classic", currentUser));
         playlistData.get(0).addSong("samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
-        playlistData.add(new Playlist("Raça Negra", this.currentUser));
-        playlistData.add(new Playlist("Roquizin", this.currentUser));
+        playlistData.add(new Playlist("Raça Negra", currentUser));
+        playlistData.add(new Playlist("Roquizin", currentUser));
     }
 
     /**
-     * Returns the data as an observable list of Persons.
+     * Returns the data as an observable list of Playlists.
      * @return
      */
     public ObservableList<Playlist> getPlaylistData(){
         return playlistData;
+    }
+
+    /**
+     * Returns the data as an observable list of Users.
+     * @return
+     */
+    public ObservableList<User> getUserData(){
+        return userData;
     }
 
     @Override
@@ -72,6 +75,13 @@ public class Main extends Application{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("PapaCapimPlayer");
         // @TODO place a if statement to verify user login
+        File file = new File("usersConfig.xml");
+        if (file != null) {
+            loadUserDataFromFile(file);
+        } else {
+            System.out.println("usersConfig.xml not found");
+        }
+        System.out.println(userData.toString());
         showLoginPage();
         //initRootLayout();
         //showUser();
@@ -85,9 +95,9 @@ public class Main extends Application{
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
-            this.rootLayout = (BorderPane) loader.load();
+            rootLayout = (BorderPane) loader.load();
 
-            Scene scene = new Scene(this.rootLayout);
+            Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
 
             // Setting Stage dimensions
@@ -173,34 +183,14 @@ public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
     }
-    /**
-     * Loads user data from the specified file. The current user data will
-     * be replaced.
-     *
-     * @param file
-     */
-    public void loadUserDataFromFile(File file) {
-        try {
-            JAXBContext context = JAXBContext
-                    .newInstance(UserListWrapper.class);
-            Unmarshaller um = context.createUnmarshaller();
 
-            // Reading XML from the file and unmarshalling.
-//            UserListWrapper wrapper = (UserListWrapper) um.unmarshal(file);
-
-            userData.clear();
-//            userData.addAll(wrapper.getUsers());
-
-            // Save the file path to the registry.
-            setUserFilePath(file);
-
-        } catch (Exception e) { // catches ANY exception
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Could not load data");
-            alert.setContentText("Could not load data from file:\n" + file.getPath());
-
-            alert.showAndWait();
+    public File getUserFilePath(){
+        Preferences prefs = Preferences.userNodeForPackage(Main.class);
+        String filePath = prefs.get("filePath", null);
+        if (filePath != null) {
+            return new File(filePath);
+        } else {
+            return null;
         }
     }
 
@@ -215,13 +205,42 @@ public class Main extends Application{
         if (file != null) {
             prefs.put("filePath", file.getPath());
 
-            // Update the stage title.
-            primaryStage.setTitle("AddressApp - " + file.getName());
         } else {
             prefs.remove("filePath");
 
-            // Update the stage title.
-            primaryStage.setTitle("AddressApp");
         }
+    }
+
+    /**
+     * Loads user data from the specified file. The current user data will
+     * be replaced.
+     *
+     * @param file
+     */
+    public void loadUserDataFromFile(File file) {
+        try {
+            JAXBContext context = JAXBContext
+                    .newInstance(UserListWrapper.class);
+            Unmarshaller um = context.createUnmarshaller();
+
+            // Reading XML from the file and unmarshalling.
+            UserListWrapper wrapper = (UserListWrapper) um.unmarshal(file);
+
+            userData.clear();
+            userData.addAll(wrapper.getUsers());
+
+            // Save the file path to the registry.
+            setUserFilePath(file);
+
+        } catch (Exception e) { // catches ANY exception
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not load data");
+            alert.setContentText("Could not load data from file:\n" + file.getPath());
+
+            alert.showAndWait();
+        }
+        //System.out.println(userData.get(0).getId());
+        //System.out.println(userData.get(0).getPassword());
     }
 }

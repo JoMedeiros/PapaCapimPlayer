@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -23,6 +24,7 @@
                                     <TableColumn minWidth="175.0" prefWidth="-1.0" text="Title" />
                                  </columns>
                               </TableView>
+                              <TextField layoutX="24.0" layoutY="257.0" promptText="search" AnchorPane.topAnchor="257.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -33,6 +35,7 @@
                                     <TableColumn fx:id="playlistSongsColumn" minWidth="175.0" prefWidth="84.0" text="Title" />
                                  </columns>
                               </TableView>
+                              <TextField layoutX="17.0" layoutY="257.0" promptText="search" />
                            </children>
                         </AnchorPane>
                      </children>

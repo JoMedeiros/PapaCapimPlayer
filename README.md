@@ -8,13 +8,13 @@ All the songs in the sample directory are public domain songs and you can downlo
 
 # TODO list
 
-- [ ] Add volume buttons
-- [ ] Next and Previous buttons do not work
-- [ ] Display time line
-- [x] Create class for users
-- [ ] List songs, create and edit playlists
+- [x] Manage login function (create hash, compare users passwords, etc);
 - [x] Create Login Page
-- [ ] Manage login function (create hash, compare users passwords, etc);
+- [x] Create class for users
+- [ ] Display time line
+- [ ] List songs, create and edit playlists
+- [ ] Next and Previous buttons do not work
+- [ ] Add volume buttons
 
 # How to compile
 

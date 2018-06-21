@@ -85,4 +85,8 @@ public class UserOverviewController {
         main.start(main.getPrimaryStage());
     }
 
+    public void handleRegisterUser(){
+        System.out.println("TODO: Open new window to register user");
+    }
+
 }

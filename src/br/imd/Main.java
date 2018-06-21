@@ -49,9 +49,9 @@ public class Main extends Application{
         // @TODO change the user
         User currentUser = new User(42, "");
         playlistData.add(new Playlist("Classic", currentUser));
-        playlistData.get(0).addSong("samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
-        playlistData.add(new Playlist("Raça Negra", currentUser));
-        playlistData.add(new Playlist("Roquizin", currentUser));
+        //playlistData.get(0).addSong("samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
+        //playlistData.add(new Playlist("Raça Negra", currentUser));
+        //playlistData.add(new Playlist("Roquizin", currentUser));
     }
 
     /**

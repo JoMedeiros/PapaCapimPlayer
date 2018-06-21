@@ -14,28 +14,28 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <HBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox prefHeight="298.0" prefWidth="485.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane>
                            <children>
                               <Label text="Library" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
-                              <TableView prefHeight="200.0" prefWidth="180.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                              <TableView AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                                  <columns>
-                                    <TableColumn minWidth="175.0" prefWidth="-1.0" text="Title" />
+                                    <TableColumn minWidth="200.0" prefWidth="-1.0" text="Title" />
                                  </columns>
                               </TableView>
-                              <TextField layoutX="24.0" layoutY="257.0" promptText="search" AnchorPane.topAnchor="257.0" />
+                              <TextField layoutX="24.0" layoutY="257.0" promptText="search" AnchorPane.bottomAnchor="14.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane>
                            <children>
                               <Label fx:id="playlistLabel" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0" />
-                              <TableView fx:id="playlistSongsTable" prefHeight="200.0" prefWidth="180.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                              <TableView fx:id="playlistSongsTable" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="25.0">
                                  <columns>
-                                    <TableColumn fx:id="playlistSongsColumn" minWidth="175.0" prefWidth="84.0" text="Title" />
+                                    <TableColumn fx:id="playlistSongsColumn" minWidth="200.0" prefWidth="200.0" text="Title" />
                                  </columns>
                               </TableView>
-                              <TextField layoutX="17.0" layoutY="257.0" promptText="search" />
+                              <TextField layoutX="17.0" layoutY="257.0" promptText="search" AnchorPane.bottomAnchor="14.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -44,11 +44,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="playlistTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                  <TableView fx:id="playlistTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                     <columns>
                       <TableColumn fx:id="playlistsColumn" minWidth="190.0" prefWidth="75.0" text="Playlists" />
                     </columns>
                   </TableView>
+                  <Button layoutX="137.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" />
                </children>
             </AnchorPane>
         </items>

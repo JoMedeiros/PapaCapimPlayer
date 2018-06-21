@@ -78,5 +78,11 @@ public class UserOverviewController {
         playlistTable.setItems(main.getPlaylistData());
     }
 
+    /**
+     * Logout function.
+     */
+    public void handleLogout(){
+        main.start(main.getPrimaryStage());
+    }
 
 }

@@ -27,15 +27,16 @@ public class LoginPageController {
      * Login function.
      */
     public void handleLogin(){
-        System.out.println("Username: " + userField.getText());
-        System.out.println("Senha: " + passwordField.getText());
-
         User user = match(userField.getText());
         if (user == null) {
-            System.out.println("Username dont match");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("User not found");
+            alert.setHeaderText("There's no such user");
+            alert.setContentText("Please verify if you typed the correct user name.\n");
+
+            alert.showAndWait();
             return;
         }
-
         // Generating Hash
         StringBuffer hexString = new StringBuffer();
         try {
@@ -53,23 +54,28 @@ public class LoginPageController {
             System.out.println("No such algorithm");
         }
         // Verifying if hexString equals the stored hash password
-        if (hexString.toString().equals("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918")) {
+        if (hexString.toString().equals(user.getPassword())) {
             this.main.initRootLayout();
             this.main.showPlayer();
             this.main.showUser();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Password Don't Match");
-            alert.setHeaderText("Username or password incorrect");
-            alert.setContentText("You entered a invalid username or password don't match.\n");
+            alert.setTitle("Invalid Password");
+            alert.setHeaderText("Password incorrect");
+            alert.setContentText("You entered a invalid password.\n");
 
             alert.showAndWait();
         }
     }
 
+    /**
+     * A function to find an return the user corresponding to the userName entered in TextField
+     * @param userName
+     * @return
+     */
     public User match(String userName){
         for (User u : main.getUserData()){
-            if (u.getId() == 0) {
+            if (u.getName().equals(userName)) {
                 return u;
             }
         }
@@ -80,7 +86,6 @@ public class LoginPageController {
      * Sets reference to Main class
      * @param main
      */
-
     public void setMain(Main main){
         this.main = main;
     }

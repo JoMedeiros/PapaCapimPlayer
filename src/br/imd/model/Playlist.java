@@ -36,10 +36,10 @@ public class Playlist {
         this.user = new SimpleIntegerProperty(user.getId());
 
         // Adding one sample song to the playlist
-        String URI = new File("samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3").toURI().toString();
-        this.songs.add(new Music(URI));
-        URI = new File("samples/Peer+Gynt+Suite+no.+1,+Op.+46+-+I.+Morning+Mood.mp3").toURI().toString();
-        this.songs.add(new Music(URI));
+        //String URI = new File("samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3").toURI().toString();
+        //this.songs.add(new Music(URI));
+        //URI = new File("samples/Peer+Gynt+Suite+no.+1,+Op.+46+-+I.+Morning+Mood.mp3").toURI().toString();
+        //this.songs.add(new Music(URI));
         this.currentIndex = -1; //
     }
 

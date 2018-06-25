@@ -12,6 +12,10 @@ import javafx.collections.ObservableList;
 import java.io.File;
 import java.util.*;
 
+// Imports of JSON
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class Playlist {
     private final StringProperty title;
     private final IntegerProperty user; //< The user id
@@ -31,10 +35,10 @@ public class Playlist {
      * @param title
      * @param user
      */
-    public Playlist(String title, User user){
+    public Playlist(String title, User user)
+    {
         this.title = new SimpleStringProperty(title);
         this.user = new SimpleIntegerProperty(user.getId());
-
         // Adding one sample song to the playlist
         //String URI = new File("samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3").toURI().toString();
         //this.songs.add(new Music(URI));

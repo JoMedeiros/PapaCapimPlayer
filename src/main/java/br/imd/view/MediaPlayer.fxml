@@ -39,9 +39,9 @@
                </graphic>
             </Button>
             <Slider value="20.0" />
-            <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#playSong">
+            <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#play">
                <graphic>
-                  <ImageView onMouseClicked="#playSong">
+                  <ImageView onMouseClicked="#play">
                      <image>
                         <Image url="@../imgs/icons8-avanço-rápido-50.png" />
                      </image>

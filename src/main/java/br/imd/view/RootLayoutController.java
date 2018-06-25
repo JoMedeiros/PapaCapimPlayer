@@ -33,7 +33,7 @@ public class RootLayoutController {
             Music music = new Music(URI);
             System.out.println("Título depois de criada: " + music.getTitle());
             for (Music m : this.main.getMusicData()) {
-                if (m.getPath() == m.getPath()) {
+                if (m.getPath() == music.getPath()) {
                     System.out.println("Música já inserida");
                     return;
                 }

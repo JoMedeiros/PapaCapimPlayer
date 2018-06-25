@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 
 public class UserOverviewController {
@@ -54,6 +55,28 @@ public class UserOverviewController {
         // Initialize the songs table with the column.
         songsColumn.setCellValueFactory(cellData ->
                 cellData.getValue().titleProperty());
+        // Listen for double click on a music to play it
+        songsTable.setRowFactory( tv -> {
+            TableRow<Music> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Music music = row.getItem();
+                    main.sendToPlayer(music); // Sends music to Main
+                }
+            });
+            return row ;
+        });
+        // Listen for double click on a music to play it
+        playlistSongsTable.setRowFactory( tv -> {
+            TableRow<Music> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Music music = row.getItem();
+                    main.sendToPlayer(music);// Sends music to Main
+                }
+            });
+            return row ;
+        });
     }
 
     /**

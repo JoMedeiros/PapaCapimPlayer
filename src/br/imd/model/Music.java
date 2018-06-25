@@ -11,7 +11,7 @@ public class Music {
     private final StringProperty title;
     private final StringProperty path;
 
-    private String trackPath;
+    //private String trackPath;
     private Media media;
 
     /**
@@ -19,12 +19,12 @@ public class Music {
      * @param path The path to the file
      */
     public Music(String path){
-        this.title = new SimpleStringProperty("Untitled");
+        this.title = new SimpleStringProperty();
         this.path = new SimpleStringProperty(path);
 
-        this.trackPath = path;
+        //this.trackPath = path;
         try {
-            this.media = new Media(this.trackPath);
+            this.media = new Media(path);
             if (media.getError() == null){
                 media.setOnError(new Runnable() {
                     @Override
@@ -40,26 +40,21 @@ public class Music {
                         }
                     }
                 });
+
+                System.out.println("Título: " + title.get());
                 //this.title.set((String) media.getMetadata().get("título"));
             }
         } catch (Exception e){
-            System.out.println("Exception initializing");
+            System.out.println("Exception trying to create instatiate music from: " + path);
             System.out.printf(e.getMessage());
         }
     }
 
     private void handleMetadata(String key, Object value) {
-        /*if (key.equals("album")) {
-            album.setText(value.toString());
-        } else if (key.equals("artist")) {
-            artist.setText(value.toString());
-        }*/ if (key.equals("title")) {
-            title.set(value.toString());
-        } /*if (key.equals("year")) {
-            year.setText(value.toString());
-        } if (key.equals("image")) {
-            albumCover.setImage((Image)value);
-        }*/
+        if (key.equals("title")) {
+            this.title.set((String) value.toString());
+        }
+        /* other keys: ("album"), ("artist"), ("year"), ("image") */
     }
 
     // Getters e setters
@@ -81,7 +76,7 @@ public class Music {
 
     public Media getMedia(){
         try {
-            this.media = new Media(this.trackPath);
+            this.media = new Media(this.path.get());
             if (media.getError() == null){
                 media.setOnError(new Runnable() {
                     @Override

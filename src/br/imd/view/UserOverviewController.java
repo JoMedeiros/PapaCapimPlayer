@@ -30,8 +30,8 @@ public class UserOverviewController {
     /**
      * The constructor.
      * The constructor is called before the initialize() method.
-     *
-    public UserOverviewController(){ }*/
+     */
+    public UserOverviewController(){ }
 
     @FXML
     private void initialize(){
@@ -84,5 +84,6 @@ public class UserOverviewController {
     public void handleLogout(){
         main.start(main.getPrimaryStage());
     }
+
 
 }

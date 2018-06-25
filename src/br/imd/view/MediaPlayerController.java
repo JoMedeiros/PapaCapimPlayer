@@ -27,18 +27,18 @@ public class MediaPlayerController {
 
     public MediaPlayerController() {
         currentMusic = playlist.getNext();
-        try{
+        /*try{
             player = new MediaPlayer(currentMusic.getMedia());
         } catch (Exception e){
             System.out.println("Player could not be created\n" + e.getMessage());
-        }
+        }*/
     }
 
     /**
      * Plays the loaded music in the player or pauses if it is playing.
      */
     public void play(){
-        // @TODO
+        if (currentMusic == null) return; // If there is no song to be played
         String URI;
         if (isPlaying) {
             URI = new File("src/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();

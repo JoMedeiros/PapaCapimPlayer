@@ -38,8 +38,6 @@ public class Playlist {
         // Adding one sample song to the playlist
         //String URI = new File("samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3").toURI().toString();
         //this.songs.add(new Music(URI));
-        //URI = new File("samples/Peer+Gynt+Suite+no.+1,+Op.+46+-+I.+Morning+Mood.mp3").toURI().toString();
-        //this.songs.add(new Music(URI));
         this.currentIndex = -1; //
     }
 
@@ -48,8 +46,19 @@ public class Playlist {
      * @param filePath
      */
     public void addSong(String filePath){
-        String URI = new File(filePath).toURI().toString();
-        this.songs.add(new Music(URI));
+        try {
+            String URI = new File(filePath).toURI().toString();
+            this.songs.add(new Music(URI));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Create a new Music object on the playlist
+     * @param music
+     */
+    public void addSong(Music music){
+        this.songs.add(music);
     }
 
     /**
@@ -57,10 +66,13 @@ public class Playlist {
      * @return
      */
     public Music getNext(){
+        if (songs.isEmpty()){
+            return null;
+        }
         //Music m = new Music("file:/home/jimmy/Documentos/github_workspace/" +
         //        "PapaCapimPlayer/samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
-        currentIndex += 1;
-        currentIndex %= songs.size();
+        //currentIndex += 1;
+        //currentIndex %= songs.size();
         return songs.get(currentIndex);
     }
 

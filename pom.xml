@@ -20,6 +20,9 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.fxml</include>
+                    <include>**/*.jpeg</include>
+                    <include>**/*.png</include>
+                    <include>**/*.json</include>
                 </includes>
             </resource>
         </resources>

@@ -20,7 +20,16 @@ public class MediaPlayerController {
 
     // Player atributes
     private boolean isPlaying = false;
-    private Playlist playlist = new Playlist();
+    private Playlist playlist;
+
+    {
+        try {
+            playlist = new Playlist();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Music currentMusic;
     private MediaPlayer player;
     private MediaView mediaView;

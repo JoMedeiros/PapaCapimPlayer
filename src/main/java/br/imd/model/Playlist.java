@@ -10,6 +10,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 // Imports of JSON
@@ -28,21 +30,32 @@ public class Playlist {
     /**
      * Default Constructor
      */
-    public Playlist(){this("Untitled", new User());}
+    public Playlist() throws IOException { this("Untitled", new User()); }
 
     /**
      * Constructor
      * @param title
      * @param user
      */
-    public Playlist(String title, User user)
+    @SuppressWarnings("unchecked")
+    public Playlist(String title, User user) throws IOException
     {
         this.title = new SimpleStringProperty(title);
         this.user = new SimpleIntegerProperty(user.getId());
-        // Adding one sample song to the playlist
-        //String URI = new File("samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3").toURI().toString();
-        //this.songs.add(new Music(URI));
-        this.currentIndex = -1; //
+
+        JSONObject pl = new JSONObject();
+        pl.put("Title", title);
+        pl.put("User", user.getId());
+
+        JSONArray songs = new JSONArray();
+        pl.put("Songs", songs);
+
+        this.currentIndex = -1;
+
+        try (FileWriter file = new FileWriter("./src/main/java/assets/playlists/"+ title +".json")) {
+            file.write(pl.toJSONString());
+            System.out.println("Successfully Copied JSON Object to File...");
+        }
     }
 
     /**

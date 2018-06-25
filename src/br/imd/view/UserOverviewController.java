@@ -14,6 +14,10 @@ import javafx.scene.control.TableView;
 
 public class UserOverviewController {
     @FXML
+    private TableView<Music> songsTable;
+    @FXML
+    private TableColumn<Music, String> songsColumn;
+    @FXML
     private TableView<Playlist> playlistTable;
     @FXML
     private TableColumn<Playlist, String> playlistsColumn;
@@ -54,11 +58,27 @@ public class UserOverviewController {
      */
     private void showPlaylist(Playlist playlist){
         if (playlist != null){
-            // Fill the Label of title and @TODO show the songs on the table
+            // Fill the Label of title
             playlistLabel.setText(playlist.titleProperty().get());
-            // Initialize the person table with the column.
+            // Initialize the songs table with the column.
             playlistSongsTable.setItems(playlist.getSongsData());
             playlistSongsColumn.setCellValueFactory(cellData ->
+                    cellData.getValue().titleProperty());
+
+        } else {
+            // Playlist not selected, remove everything
+            playlistLabel.setText("No playlist selected");
+        }
+    }
+    /**
+     * Shows the playlist in the GUI
+     * @param playlist
+     */
+    private void showSongs(Playlist playlist){
+        if (playlist != null){
+            // Initialize the songs table with the column.
+            songsTable.setItems(playlist.getSongsData());
+            songsColumn.setCellValueFactory(cellData ->
                     cellData.getValue().titleProperty());
 
         } else {

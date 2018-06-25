@@ -14,7 +14,7 @@ public class RootLayoutController {
     AnchorPane userPane;
 
     @FXML
-    private void handleOpen() {
+    private void handleAddTrack() {
         FileChooser fileChooser = new FileChooser();
 
         // Define um filtro de extensão
@@ -32,7 +32,7 @@ public class RootLayoutController {
             String URI = new File(file.getPath()).toURI().toString(); // Converting path to URI String format
             Music music = new Music(URI);
             System.out.println("Título depois de criada: " + music.getTitle());
-            this.main.getPlaylistData().get(0).addSong(music);
+            this.main.getMusicData().add(music);
         }
     }
 

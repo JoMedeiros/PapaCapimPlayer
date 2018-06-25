@@ -1,5 +1,6 @@
 package br.imd;
 
+import br.imd.model.Music;
 import br.imd.model.Playlist;
 import br.imd.model.User;
 import br.imd.model.UserListWrapper;
@@ -38,10 +39,14 @@ public class Main extends Application{
     private ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
 
     /**
-     * The data as an observable list of Persons.
+     * The data as an observable list of Musics
+     */
+    private ObservableList<Music> musicData = FXCollections.observableArrayList();
+
+    /**
+     * The data as an observable list of Users.
      */
     private ObservableList<User> userData = FXCollections.observableArrayList();
-
 
     /**
      * Constructor
@@ -61,6 +66,14 @@ public class Main extends Application{
      */
     public ObservableList<Playlist> getPlaylistData(){
         return playlistData;
+    }
+
+    /**
+     * Returns the data as an observable list of Playlists.
+     * @return
+     */
+    public ObservableList<Music> getMusicData(){
+        return musicData;
     }
 
     /**

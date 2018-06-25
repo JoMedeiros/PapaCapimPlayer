@@ -6,6 +6,7 @@ import br.imd.model.User;
 import br.imd.model.UserListWrapper;
 import br.imd.util.PlaylistLoader;
 import br.imd.view.LoginPageController;
+import br.imd.view.MediaPlayerController;
 import br.imd.view.RootLayoutController;
 import br.imd.view.UserOverviewController;
 import javafx.application.Application;
@@ -33,6 +34,7 @@ public class Main extends Application{
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private MediaPlayerController playerController;
 
     /**
      * The data as an observable list of Playlists
@@ -48,7 +50,6 @@ public class Main extends Application{
      * The data as an observable list of Musics
      */
     private ObservableList<Music> musicData = FXCollections.observableArrayList();
-
 
     /**
      * Constructor
@@ -182,12 +183,20 @@ public class Main extends Application{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/MediaPlayer.fxml"));
             AnchorPane playerOverview = loader.load();
+            playerController = loader.getController(); // Sets a reference to the player
 
             rootLayout.setBottom(playerOverview);
         } catch (IOException e){
             System.out.println("Exception loading Media Player fxml file");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Recieves a Music from UserOverviewController and sends to MediaPlayerController
+     */
+    public void sendToPlayer(Music music){
+        playerController.playSong(music);
     }
 
     /**

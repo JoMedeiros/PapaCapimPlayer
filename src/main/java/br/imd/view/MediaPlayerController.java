@@ -49,6 +49,7 @@ public class MediaPlayerController {
     public void play(){
         if (currentMusic == null) return; // If there is no song to be played
         String URI;
+        System.out.println("Playing...");
         if (isPlaying) {
             URI = new File("src/main/java/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
             player.pause();
@@ -72,18 +73,32 @@ public class MediaPlayerController {
      */
     public void stop(){
         player.stop();
-        String URI = new File("src/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
-        player.pause();
+        String URI = new File("src/main/java/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
+        try {
+            ImageView view = new ImageView(new Image(URI));
+            playPauseBtn.setGraphic(view);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         isPlaying = false;
     }
 
-
-    public void playSong() {
-        //String songPath = playlist.getNextPath()
-        String songPath = "samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3";
-        Media song = new Media(new File(songPath).toURI().toString());
+    /**
+     * Plays a song passed through Music object.
+     * @param music
+     */
+    public void playSong(Music music) {
+        if (player != null){
+            this.stop();
+        }//String songPath = playlist.getNextPath()
+        //String songPath = music.getPath();
+        currentMusic = music;
+        Media song = music.getMedia();
+                //new Media(new File(songPath).toURI().toString());
         player = new MediaPlayer(song);
-        player.play();
+        System.out.println("Sending to play...");
+
+        this.play();
 
         //player.setOnPaused(song);
     }

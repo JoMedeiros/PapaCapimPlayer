@@ -61,8 +61,6 @@ public class Music {
                         }
                     }
                 });
-
-                System.out.println("Título: " + title.get());
                 //this.title.set((String) media.getMetadata().get("título"));
             }
         } catch (Exception e){

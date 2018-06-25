@@ -50,11 +50,11 @@ public class MediaPlayerController {
         if (currentMusic == null) return; // If there is no song to be played
         String URI;
         if (isPlaying) {
-            URI = new File("src/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
+            URI = new File("src/main/java/br/imd/imgs/icons8-reproduzir-50.png").toURI().toString();
             player.pause();
             isPlaying = false;
         } else {
-            URI = new File("src/br/imd/imgs/icons8-pausa-50.png").toURI().toString();
+            URI = new File("src/main/java/br/imd/imgs/icons8-pausa-50.png").toURI().toString();
             player.play();
             isPlaying = true;
         }

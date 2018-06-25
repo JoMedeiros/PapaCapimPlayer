@@ -10,11 +10,13 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
 // Imports of JSON
+import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -38,7 +40,7 @@ public class Playlist {
      * @param user
      */
     @SuppressWarnings("unchecked")
-    public Playlist(String title, User user) throws IOException
+    public Playlist(String title, User user)
     {
         this.title = new SimpleStringProperty(title);
         this.user = new SimpleIntegerProperty(user.getId());
@@ -50,10 +52,19 @@ public class Playlist {
         JSONArray songs = new JSONArray();
         pl.put("Songs", songs);
 
-        this.currentIndex = -1;
+        try {
+            generateJsonFile(title, pl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        this.currentIndex = -1;
+    }
+
+    private void generateJsonFile(String title, JSONObject obj) throws IOException
+    {
         try (FileWriter file = new FileWriter("./src/main/java/assets/playlists/"+ title +".json")) {
-            file.write(pl.toJSONString());
+            file.write(obj.toJSONString());
             System.out.println("Successfully Copied JSON Object to File...");
         }
     }
@@ -62,11 +73,29 @@ public class Playlist {
      * Create a new Music object on the playlist
      * @param filePath
      */
+    @SuppressWarnings("unchecked")
     public void addSong(String filePath){
-        try {
+        JSONParser parser = new JSONParser();
+        try
+        {
+            // Creates an object with the playlist
+            Object income = parser.parse(new FileReader("./src/main/java/assets/playlists/" + this.title.getValue() + ".json"));
+            JSONObject playlist = (JSONObject) income;
+
+            // Retrieves all of its songs
+            JSONArray songsList = (JSONArray) playlist.get("Songs");
+
             String URI = new File(filePath).toURI().toString();
+
+            songsList.add(URI);
+            playlist.put("Songs", songsList);
+
             this.songs.add(new Music(URI));
-        } catch (Exception e){
+
+            generateJsonFile(title.getValue(), playlist);
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }

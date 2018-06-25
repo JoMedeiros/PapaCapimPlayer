@@ -57,7 +57,7 @@ public class Main extends Application{
         User currentUser = new User(42, "");
         try {
             playlistData.add(new Playlist("Classic", currentUser));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

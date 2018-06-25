@@ -48,10 +48,9 @@ public class Main extends Application{
      */
     public Main(){
         // @TODO change the user
-        this.bogus();
         User currentUser = new User(42, "");
         playlistData.add(new Playlist("Classic", currentUser));
-        playlistData.get(0).addSong("samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
+//        playlistData.get(0).addSong("samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
 //        playlistData.add(new Playlist("Raça Negra", currentUser));
 //        playlistData.add(new Playlist("Roquizin", currentUser));
     }
@@ -106,7 +105,7 @@ public class Main extends Application{
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = loader.load();
 
             // Give the controller access to the main app.
             RootLayoutController controller = loader.getController();
@@ -132,7 +131,7 @@ public class Main extends Application{
             // Load the User layout
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/LoginPage.fxml"));
-            AnchorPane loginPage = (AnchorPane) loader.load();
+            AnchorPane loginPage = loader.load();
 
             Scene scene = new Scene(loginPage);
             primaryStage.setScene(scene);
@@ -158,7 +157,7 @@ public class Main extends Application{
             // Load the User layout
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/UserOverview.fxml"));
-            AnchorPane userOverview = (AnchorPane) loader.load();
+            AnchorPane userOverview = loader.load();
 
             // Give the controller access to the main app.
             UserOverviewController controller = loader.getController();
@@ -178,7 +177,7 @@ public class Main extends Application{
             // Load the User layout
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/MediaPlayer.fxml"));
-            AnchorPane playerOverview = (AnchorPane) loader.load();
+            AnchorPane playerOverview = loader.load();
 
             rootLayout.setBottom(playerOverview);
         } catch (IOException e){

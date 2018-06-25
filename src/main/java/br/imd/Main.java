@@ -1,5 +1,6 @@
 package br.imd;
 
+import br.imd.model.Music;
 import br.imd.model.Playlist;
 import br.imd.model.User;
 import br.imd.model.UserListWrapper;
@@ -42,6 +43,11 @@ public class Main extends Application{
      */
     private ObservableList<User> userData = FXCollections.observableArrayList();
 
+    /**
+     * The data as an observable list of Musics
+     */
+    private ObservableList<Music> musicData = FXCollections.observableArrayList();
+
 
     /**
      * Constructor
@@ -54,9 +60,6 @@ public class Main extends Application{
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        playlistData.get(0).addSong("samples/Mozart_Eine_kleine_Nachtmusik_KV525_Satz_4_Rondo.mp3");
-//        playlistData.add(new Playlist("Raça Negra", currentUser));
-//        playlistData.add(new Playlist("Roquizin", currentUser));
     }
 
     public void bogus()
@@ -82,6 +85,14 @@ public class Main extends Application{
      */
     public ObservableList<User> getUserData(){
         return userData;
+    }
+
+    /**
+     * Returns the data as an observable list of Musics.
+     * @return
+     */
+    public ObservableList<Music> getMusicData(){
+        return musicData;
     }
 
     @Override
@@ -258,7 +269,5 @@ public class Main extends Application{
 
             alert.showAndWait();
         }
-        //System.out.println(userData.get(0).getId());
-        //System.out.println(userData.get(0).getPassword());
     }
 }

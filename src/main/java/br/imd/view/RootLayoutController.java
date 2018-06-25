@@ -32,7 +32,13 @@ public class RootLayoutController {
             String URI = new File(file.getPath()).toURI().toString(); // Converting path to URI String format
             Music music = new Music(URI);
             System.out.println("Título depois de criada: " + music.getTitle());
-            this.main.getPlaylistData().get(0).addSong(music);
+            for (Music m : this.main.getMusicData()) {
+                if (m.getPath() == m.getPath()) {
+                    System.out.println("Música já inserida");
+                    return;
+                }
+            }
+            this.main.getMusicData().add(music);
         }
     }
 

@@ -4,6 +4,7 @@ import br.imd.model.Music;
 import br.imd.model.Playlist;
 import br.imd.model.User;
 import br.imd.model.UserListWrapper;
+import br.imd.util.PlaylistLoader;
 import br.imd.view.LoginPageController;
 import br.imd.view.RootLayoutController;
 import br.imd.view.UserOverviewController;
@@ -55,20 +56,8 @@ public class Main extends Application{
     public Main(){
         // @TODO change the user
         User currentUser = new User(42, "");
-        try {
-            playlistData.add(new Playlist("Classic", currentUser));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void bogus()
-    {
-        File folder = new File("./src/assets/");
-        for(File e : folder.listFiles())
-        {
-            //System.out.println(e.get);
-        }
+        PlaylistLoader pLoader = new PlaylistLoader();
+        playlistData = pLoader.loadPlaylist(currentUser, playlistData);
     }
 
     /**

@@ -39,8 +39,10 @@ public class Playlist {
      * @param title
      * @param user
      */
+    public Playlist(String title, User user) { this(title, user, true); }
+
     @SuppressWarnings("unchecked")
-    public Playlist(String title, User user)
+    public Playlist(String title, User user, boolean generateFile)
     {
         this.title = new SimpleStringProperty(title);
         this.user = new SimpleIntegerProperty(user.getId());
@@ -52,18 +54,27 @@ public class Playlist {
         JSONArray songs = new JSONArray();
         pl.put("Songs", songs);
 
-        try {
-            generateJsonFile(title, pl);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(generateFile)
+        {
+            try
+            {
+                generateJsonFile(title, user.getId(),pl);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
         this.currentIndex = -1;
     }
 
-    private void generateJsonFile(String title, JSONObject obj) throws IOException
+    private void generateJsonFile(String title, int id,JSONObject obj) throws IOException
     {
-        try (FileWriter file = new FileWriter("./src/main/java/assets/playlists/"+ title +".json")) {
+        File files = new File("./src/main/java/assets/playlists/" + id + "/");
+        // If there's not an ID directory on playlists folder, create it
+        if ( !files.isDirectory() ) files.mkdir();
+        try (FileWriter file = new FileWriter("./src/main/java/assets/playlists/"+ id +"/"+ title +".json")) {
             file.write(obj.toJSONString());
             System.out.println("Successfully Copied JSON Object to File...");
         }
@@ -79,7 +90,8 @@ public class Playlist {
         try
         {
             // Creates an object with the playlist
-            Object income = parser.parse(new FileReader("./src/main/java/assets/playlists/" + this.title.getValue() + ".json"));
+            Object income = parser.parse(new FileReader("./src/main/java/assets/playlists/" + this.user.getValue() +
+                    "/"+ this.title.getValue() + ".json"));
             JSONObject playlist = (JSONObject) income;
 
             // Retrieves all of its songs
@@ -92,12 +104,17 @@ public class Playlist {
 
             this.songs.add(new Music(URI));
 
-            generateJsonFile(title.getValue(), playlist);
+            generateJsonFile(title.getValue(), this.user.getValue(), playlist);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+    }
+
+    public void addSong(String URI, boolean generateFile)
+    {
+        if(!generateFile) this.songs.add(new Music(URI));
     }
     /**
      * Create a new Music object on the playlist

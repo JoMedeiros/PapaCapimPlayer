@@ -8,10 +8,9 @@ import javafx.beans.binding.ObjectExpression;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+
+import java.util.Optional;
 
 public class UserOverviewController {
     @FXML
@@ -182,5 +181,22 @@ public class UserOverviewController {
     @FXML
     private void handleCreatePlaylist(){
         // @TODO Show dialog to create Playlist
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Creating New Playlist");
+        dialog.setHeaderText("Enter a name for the playlist");
+        dialog.setContentText("Playlist Title:");
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+
+        // The Java 8 way to get the response value (with lambda expression).
+        result.ifPresent(title -> {
+            System.out.println("Sucessfull created Playlist " + title);
+            if (title.length() > 0){
+                // @TODO replace User(0, "admin") with current user ID
+                Playlist playlist = new Playlist(title, new User(0,"admin"));
+                main.getPlaylistData().add(playlist);
+            }
+        });
     }
 }

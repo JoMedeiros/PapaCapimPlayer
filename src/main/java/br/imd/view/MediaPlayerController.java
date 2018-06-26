@@ -90,8 +90,7 @@ public class MediaPlayerController {
     public void playSong(Music music) {
         if (player != null){
             this.stop();
-        }//String songPath = playlist.getNextPath()
-        //String songPath = music.getPath();
+        }
         currentMusic = music;
         Media song = music.getMedia();
                 //new Media(new File(songPath).toURI().toString());
@@ -99,8 +98,6 @@ public class MediaPlayerController {
         System.out.println("Sending to play...");
 
         this.play();
-
-        //player.setOnPaused(song);
     }
 
 }

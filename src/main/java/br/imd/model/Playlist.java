@@ -26,7 +26,6 @@ public class Playlist {
     private int currentIndex; //< index of the current song
 
     private boolean shuffleOn = false;
-    //private Map<String, String> playlist;
     private ObservableList<Music> songs = FXCollections.observableArrayList();
 
     /**
@@ -105,6 +104,19 @@ public class Playlist {
      */
     public void addSong(Music music){
         this.songs.add(music);
+
+        JSONObject pl = new JSONObject();
+        pl.put("Title", title.get());
+        pl.put("User", user.get());
+
+        JSONArray songs = new JSONArray();
+        pl.put("Songs", songs);
+
+        try {
+            generateJsonFile(title.get(), pl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

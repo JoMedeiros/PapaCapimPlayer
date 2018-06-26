@@ -31,6 +31,10 @@ public class UserOverviewController {
 
     // Reference to the main application.
     private Main main;
+    // Selected playlist
+    private Playlist selectedPlaylist = null;
+    // Selected song
+    private Music selectedSong = null;
 
     /**
      * The constructor.
@@ -50,6 +54,11 @@ public class UserOverviewController {
         // Listen for selection changes and show the playlist details.
         playlistTable.getSelectionModel().selectedItemProperty().addListener(
                 ((observable, oldValue, newValue) -> showPlaylist(newValue))
+        );
+
+        // Listen for selection changes of songs.
+        songsTable.getSelectionModel().selectedItemProperty().addListener(
+                ((observable, oldValue, newValue) -> selectedSong = newValue)
         );
 
         // Initialize the songs table with the column.
@@ -87,6 +96,8 @@ public class UserOverviewController {
         if (playlist != null){
             // Fill the Label of title
             playlistLabel.setText(playlist.titleProperty().get());
+            // Set selected playlist
+            selectedPlaylist = playlist;
             // Initialize the songs table with the column.
             playlistSongsTable.setItems(playlist.getSongsData());
             playlistSongsColumn.setCellValueFactory(cellData ->
@@ -129,8 +140,47 @@ public class UserOverviewController {
     /**
      * Logout function.
      */
-    public void handleLogout(){
+    @FXML
+    private void handleLogout(){
         main.start(main.getPrimaryStage());
     }
 
+    /**
+     * Function to add song to playlist
+     */
+    @FXML
+    private void handleAddToPlaylist(){
+        if (selectedPlaylist == null){
+            // No playlist selected
+            return;
+        }
+        if (selectedSong == null){
+            // No Song selected
+            return;
+        }
+        selectedPlaylist.addSong(selectedSong);
+    }
+
+    /**
+     * Function to remove a song of a playlist
+     */
+    @FXML
+    private void handleRemoveFromPlaylist(){
+        if (selectedPlaylist == null){
+            // No playlist selected
+            return;
+        }
+        if (selectedSong == null){
+            // No Song selected
+            return;
+        }
+        System.out.println("@TODO: remove " + selectedSong.getTitle());
+    }
+    /**
+     * Function to create new Playlist.
+     */
+    @FXML
+    private void handleCreatePlaylist(){
+        // @TODO Show dialog to create Playlist
+    }
 }

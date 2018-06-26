@@ -25,7 +25,8 @@
                                     <TableColumn fx:id="songsColumn" minWidth="200.0" prefWidth="-1.0" text="Title" />
                                  </columns>
                               </TableView>
-                              <TextField layoutX="24.0" layoutY="257.0" promptText="search" AnchorPane.bottomAnchor="14.0" />
+                              <TextField layoutX="24.0" layoutY="257.0" promptText="search" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="80.0" />
+                              <Button layoutX="175.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleAddToPlaylist" text="Add &gt;&gt;" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
@@ -36,7 +37,8 @@
                                     <TableColumn fx:id="playlistSongsColumn" minWidth="200.0" prefWidth="200.0" text="Title" />
                                  </columns>
                               </TableView>
-                              <TextField layoutX="17.0" layoutY="257.0" promptText="search" AnchorPane.bottomAnchor="14.0" />
+                              <TextField layoutX="17.0" layoutY="257.0" promptText="search" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="95.0" />
+                              <Button layoutX="158.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleRemoveFromPlaylist" text="Remove" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -51,7 +53,7 @@
                     </columns>
                   </TableView>
                   <Button layoutX="137.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                  <Button layoutX="14.0" layoutY="312.0" mnemonicParsing="false" text="New Playlist" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" />
+                  <Button layoutX="14.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleCreatePlaylist" text="New Playlist" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" />
                </children>
             </AnchorPane>
         </items>

@@ -103,9 +103,6 @@ public class RadixTrie
                 wordsFromPrefix.set(i, word);
             }
 
-            // And now we add the prefix itself to the list
-            wordsFromPrefix.add(prefix);
-
             return wordsFromPrefix;
         }
         return null;
@@ -150,6 +147,12 @@ public class RadixTrie
             current = current.parent;
         }
         return true;
+    }
+
+    public ArrayList<String> getAllWords()
+    {
+        ArrayList<String> words = new ArrayList<>();
+        return getWords(root, words, "");
     }
 
     private Node searchNodeByPrefix(String prefix)

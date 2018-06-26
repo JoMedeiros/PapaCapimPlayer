@@ -125,12 +125,12 @@ public class Playlist {
     {
         // First, we need to treat the String, leaving only its name
         String[] tokens = URI.split("/");
-
-        String name = tokens[ tokens.length - 1 ];
-
-        trie_songs.insert(name);
-        trie_songs.print();
+        // Then just add to the trie
+        trie_songs.insert( tokens[ tokens.length - 1 ] );
     }
+
+    // @TODO: change this method to getWordsFromPrefix
+    public ArrayList<String> getWordsTriePrefix(String prefix) { return trie_songs.getAllWords(); }
     /**
      * Create a new Music object on the playlist
      * @param music

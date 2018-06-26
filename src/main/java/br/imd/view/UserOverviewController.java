@@ -6,12 +6,12 @@ import br.imd.model.Playlist;
 import br.imd.model.User;
 import javafx.beans.binding.ObjectExpression;
 import javafx.collections.ObservableList;
+import org.controlsfx.control.textfield.TextFields;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+
+import java.util.ArrayList;
 
 public class UserOverviewController {
     @FXML
@@ -28,6 +28,8 @@ public class UserOverviewController {
     private TableColumn<Music, String> playlistSongsColumn;
     @FXML
     public Label playlistLabel;
+    @FXML
+    private TextField input;
 
     // Reference to the main application.
     private Main main;
@@ -84,7 +86,8 @@ public class UserOverviewController {
      * @param playlist
      */
     private void showPlaylist(Playlist playlist){
-        if (playlist != null){
+        if (playlist != null)
+        {
             // Fill the Label of title
             playlistLabel.setText(playlist.titleProperty().get());
             // Initialize the songs table with the column.
@@ -92,7 +95,15 @@ public class UserOverviewController {
             playlistSongsColumn.setCellValueFactory(cellData ->
                     cellData.getValue().titleProperty());
 
-        } else {
+            // Listen for the input to search and autocomplete
+
+            // @TODO change the way autocomplete works here
+            ArrayList<String> words = playlist.getWordsTriePrefix("");
+
+            TextFields.bindAutoCompletion(input, words);
+        }
+        else
+        {
             // Playlist not selected, remove everything
             playlistLabel.setText("No playlist selected");
         }

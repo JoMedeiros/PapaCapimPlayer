@@ -57,8 +57,13 @@ public class Main extends Application{
     public Main(){
         // @TODO change the user
         User currentUser = new User(42, "");
-        PlaylistLoader pLoader = new PlaylistLoader();
-        playlistData = pLoader.loadPlaylist(currentUser, playlistData);
+
+        playlistData.add( new Playlist("Caesar", currentUser) );
+        playlistData.get(0).addSong("./samples/Die+Walk%C3%BCre,+WWV+86B+-+Ride+of+the+Valkyries.mp3");
+
+        // Loads the previous created playlists (uncomment this)
+        //PlaylistLoader pLoader = new PlaylistLoader();
+        //playlistData = pLoader.loadPlaylist(currentUser, playlistData);
     }
 
     /**

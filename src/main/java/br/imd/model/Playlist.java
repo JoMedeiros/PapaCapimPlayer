@@ -1,5 +1,6 @@
 package br.imd.model;
 
+import br.imd.util.tries.RadixTrie;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -28,6 +29,7 @@ public class Playlist {
     private boolean shuffleOn = false;
     //private Map<String, String> playlist;
     private ObservableList<Music> songs = FXCollections.observableArrayList();
+    private RadixTrie trie_songs = new RadixTrie();
 
     /**
      * Default Constructor
@@ -103,6 +105,7 @@ public class Playlist {
             playlist.put("Songs", songsList);
 
             this.songs.add(new Music(URI));
+            this.addSongToTrie(URI);
 
             generateJsonFile(title.getValue(), this.user.getValue(), playlist);
         }
@@ -114,7 +117,19 @@ public class Playlist {
 
     public void addSong(String URI, boolean generateFile)
     {
+        this.addSongToTrie(URI);
         if(!generateFile) this.songs.add(new Music(URI));
+    }
+
+    public void addSongToTrie(String URI)
+    {
+        // First, we need to treat the String, leaving only its name
+        String[] tokens = URI.split("/");
+
+        String name = tokens[ tokens.length - 1 ];
+
+        trie_songs.insert(name);
+        trie_songs.print();
     }
     /**
      * Create a new Music object on the playlist
